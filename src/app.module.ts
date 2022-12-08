@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { EmailHandlerModule } from './email-handler/email-handler.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [EmailHandlerModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), EmailHandlerModule],
   controllers: [],
   providers: [],
 })
