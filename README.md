@@ -23,7 +23,7 @@ for me these give an advantage and reliability to build software from the backen
 
 ### API info
 URL:
-- https://morning-depths-69843.herokuapp.com/email-handler/api/v1/send-email
+- https://63933d0f6c9e983fd13bb582--velvety-swan-23ec6f.netlify.app/email-handler/api/v1/send-email
 
 Method:<br> 
   -  POST
