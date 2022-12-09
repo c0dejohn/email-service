@@ -1,18 +1,26 @@
+version: '3.8'
 services:
-  backend:
-    image: email-handler-backend
+  prod:
+    container_name: email-service-prod
+    image: nestjs-api-prod:1.0.0
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    command: npm run start:prod
     ports:
-      - '3001:3001'
-    depends_on:
-      - mongo
-
-  mongo:
-    image: mongo:4.0.4
-    ports:
-      - '27017:27017'
-    environment:
-      MONGO_INITDB_DATABASE: 'admin'
-      MONGO_INITDB_ROOT_USERNAME: 'admin'
-      MONGO_INITDB_ROOT_PASSWORD: 'admin'
+      - "3001:3001" # application port
+      - "9229:9229" # debugger port
+    networks:
+      - email-service
     volumes:
-      - ./mongo-volume:/data/db
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+
+networks:
+  email-service:
