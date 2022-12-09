@@ -22,6 +22,11 @@ by the implicit SOLID principles, and others patterns like decorators, ts, guard
 for me these give an advantage and reliability to build software from the backend and I enjoy it.
 
 ### API info
+
+HEALTH CHECK
+- GET https://velvety-swan-23ec6f.netlify.app/email-handler/api/v1/health
+- to check if the service is up
+
 URL:
 - https://velvety-swan-23ec6f.netlify.app/email-handler/api/v1/send-email
 
