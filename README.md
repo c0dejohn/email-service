@@ -24,11 +24,11 @@ for me these give an advantage and reliability to build software from the backen
 ### API info
 
 HEALTH CHECK
-- GET https://velvety-swan-23ec6f.netlify.app/email-handler/api/v1/health
+- GET https://morning-depths-69843.herokuapp.com/email-handler/api/v1/health
 - to check if the service is up
 
 URL:
-- https://velvety-swan-23ec6f.netlify.app/email-handler/api/v1/send-email
+- https://morning-depths-69843.herokuapp.com/email-handler/api/v1/send-email
 
 Method:<br> 
   -  POST
