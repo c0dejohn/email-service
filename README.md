@@ -1,30 +1,86 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Email Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### Challenge 
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Create a service that accepts the necessary information and sends emails. It should provide an abstraction between two different email service providers. If one of the services goes down, your service can quickly failover to a different provider without affecting your customers.
 
-## Description
+Email Providers used:
+- SendGrid
+- Mailgun
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Technical track
+back-end
+
+### Description
+It is build in nodejs and Nestjs as framework .
+
+For this challenge I decided to use nestj because of the structure and added value that it offers.
+
+I have experience using express in node but I have experience too in python 
+frameworks like flask or django, I think that nestjs is great for enterprise applications
+by the implicit SOLID principles, and others patterns like decorators, ts, guards, interceptor, etc..
+for me these give an advantage and reliability to build software from the backend and I enjoy it.
+
+### API info
+URL:
+- {{base_url}}/email-handler/api/v1/send
+
+Method:<br> 
+  -  POST
+
+Input:
+- One from email address
+- email subject
+- email content
+
+input format: json
+
+JSON key | Meaning
+-------- | -------
+to       | string or list, the to email address(es)
+subject  | the email subject
+text     | full text content of the email to be sent
+
+
+Following is a sample input json:
+```
+{
+
+    'to':['test1@mail.com, test2@mail.com'],
+    'subject':'test subject',
+    'text':'This is the test text as the email content. Again, this is the test text as the email content.'
+}
+```
+
+output:
+- id
+- message
+
+output format: json
+
+Following is a sample output json:
+```
+{'id':string, 'message':string}
+```
+
+### Sequence Diagram
+
+![Sequence Diagram](public/sequence-diagram.png)
+
+The request starts from the front end through a form, sends the entered data to the 
+email-service api where the controller receives the payload and is then transported to the 
+service layer where the repositories are called and the process is evaluated. 
+status of the request to the external apis
+if one of them fails, a change is made to the next provider
+to finally respond to the client successfully
+
+
+### Form
+
+
+
+
+
 
 ## Installation
 
@@ -58,27 +114,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
 
-Nest is [MIT licensed](LICENSE).
 
-Email Service
-Create a service that accepts the necessary information and sends emails. It should provide an abstraction between two different email service providers. If one of the services goes down, your service can quickly failover to a different provider without affecting your customers.
 
-Example Email Providers:
-
-SendGrid - Simple Send Documentation
-Mailgun - Simple Send Documentation
-SparkPost - Developer Hub
-Amazon SES - Simple Send Documentation
-All listed services are free to try and are pretty painless to sign up for, so please register your own test accounts on each.

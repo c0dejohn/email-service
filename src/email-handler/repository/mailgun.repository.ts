@@ -1,9 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { fromJSON, parse, stringify, toJSON } from 'flatted';
+
 import axios from 'axios';
 import * as util from 'util';
 import RequestBodyDto from '../dto/request-body.dto';
+import ResponseDto from '../dto/response.dto';
 
 @Injectable()
 export class MailgunRepository {
@@ -11,7 +12,7 @@ export class MailgunRepository {
 
   constructor(readonly configService: ConfigService) {}
 
-  async sendMessage(body: RequestBodyDto): Promise<any> {
+  async sendMessage(body: RequestBodyDto): Promise<ResponseDto> {
     const url = this.configService.get('MAILGUN_URL');
     const key = this.configService.get('MAILGUN_API_KEY');
     const mailOptions = {
@@ -47,7 +48,7 @@ export class MailgunRepository {
         '@sendMessage Email successfully sent to: ',
         mailOptions.to,
       );
-      return { data: response.data };
+      return { message: response.data.message, id: response.data.id };
     } catch (err) {
       this.logger.error('Whoops! Something went wrong');
       this.logger.error(

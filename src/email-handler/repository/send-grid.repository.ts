@@ -1,10 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-//import { RiskValidateTenureDto } from '../../dto/core/request/riskValidateTenure.dto';
-//import { RiskValidateTenureResponseDto } from '../../dto/core/response/riskValidateTenureResponse.dto';
 import * as util from 'util';
 import RequestBodyDto from '../dto/request-body.dto';
 import { MailerService } from '@nestjs-modules/mailer';
+import ResponseDto from '../dto/response.dto';
 
 @Injectable()
 export class SendGridRepository {
@@ -12,10 +11,10 @@ export class SendGridRepository {
 
   constructor(
     readonly configService: ConfigService,
-    private mailService?: MailerService,
+    private readonly mailService?: MailerService,
   ) {}
 
-  async sendMessage(body: RequestBodyDto): Promise<any> {
+  async sendMessage(body: RequestBodyDto): Promise<ResponseDto> {
     const apiToken = this.configService.get('SENDGRID_API_KEY');
     const headers = { authorization: `Bearer ${apiToken}` };
     const msg = {
@@ -59,8 +58,8 @@ export class SendGridRepository {
     );
 
     return {
-      data: response.response,
-      message: response.messageId,
+      message: response.response,
+      id: response.messageId,
     };
   }
 }
