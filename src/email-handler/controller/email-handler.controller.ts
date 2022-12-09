@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Logger,
@@ -20,5 +21,10 @@ export class EmailHandlerController {
   async sendEmail(@Body() body: RequestBodyDto): Promise<ResponseDto> {
     this.logger.log('EmailHandlerController@sendEmail entry data', body);
     return await this.emailHandlerService.sendEmail(body);
+  }
+  @Get('health')
+  @HttpCode(HttpStatus.OK)
+  async health(): Promise<string> {
+    return 'OK';
   }
 }
