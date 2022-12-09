@@ -3,6 +3,7 @@
 /node_modules
 /.history
 /registries
+.ngrok
 
 # Logs
 logs
