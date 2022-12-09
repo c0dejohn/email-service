@@ -1,0 +1,25 @@
+{
+  "name": "email-service",
+  "website": "https://github.com/c0dejohn/email-service",
+  "repository": "https://github.com/tooljet/tooljet",
+  "success_url": "/",
+  "scripts":{
+    "predeploy": "npm install && npm run build"
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Environment [production/development]",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
