@@ -1,1 +1,1 @@
-web: nest build & nest start
+web: nest start
