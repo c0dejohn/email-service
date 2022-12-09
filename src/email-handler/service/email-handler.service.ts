@@ -12,7 +12,7 @@ export class EmailHandlerService {
     private readonly sendGridRepository: SendGridRepository,
     private readonly mailgunRepository: MailgunRepository,
   ) {}
-  defaultProvider = this.sendGridRepository;
+  defaultProvider = this.mailgunRepository;
   async sendEmail(body: RequestBodyDto): Promise<ResponseDto> {
     try {
       return await this.defaultProvider.sendMessage(body);

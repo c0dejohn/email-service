@@ -51,10 +51,10 @@ describe('EmailHandlerSevice', () => {
     };
     expect.assertions(1);
     try {
-      sendGridRepository.sendMessage.mockResolvedValue(response);
+      mailgunRepository.sendMessage.mockResolvedValue(response);
     } catch (err) {
       expect(err).toMatch('error');
-      mailgunRepository.sendMessage.mockResolvedValue(response);
+      sendGridRepository.sendMessage.mockResolvedValue(response);
     }
 
     const result = await service.sendEmail(body);
