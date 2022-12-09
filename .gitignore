@@ -4,6 +4,7 @@
 /.history
 /registries
 .ngrok
+/mongo-volume
 
 # Logs
 logs
